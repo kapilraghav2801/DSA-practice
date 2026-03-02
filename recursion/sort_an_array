@@ -1,0 +1,23 @@
+def sort_array(arr):
+    if len(arr) <= 1:
+        return
+    
+    temp = arr.pop()
+
+    sort_array(arr)
+
+    insert(arr,temp)
+
+def insert(arr, value):
+    if len(arr) == 0 or arr[-1] <= value:
+        arr.append(value)
+        return
+
+    temp = arr.pop()
+    insert(arr,value)
+    arr.append(temp)
+    
+arr = [3,1,8,1,3,5]   # [1,3,5]
+sort_array(arr)
+print(arr)
+

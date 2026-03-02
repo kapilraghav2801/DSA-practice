@@ -1,0 +1,50 @@
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def bottom_order(root):
+    if not root:
+        return []
+    
+    q = deque([root])
+    result = []
+
+    while q:
+        level = []
+        level_size = len(q)
+        for _ in range(level_size):
+            node = q.popleft()
+            level.append(node.val)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        result.append(level)
+    return result
+
+root = TreeNode(
+    4,
+    TreeNode(2, TreeNode(1), TreeNode(3)),
+    TreeNode(7)
+)
+
+level_order = bottom_order(root)
+print(level_order)
+level_order.reverse()
+print(level_order)
+
+root = TreeNode(
+    3,
+    TreeNode(9),
+    TreeNode(20,TreeNode(15),TreeNode(7))
+)
+
+
+level_order = bottom_order(root)
+print(level_order)
+level_order.reverse()
+print(level_order)

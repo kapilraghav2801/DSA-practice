@@ -1,0 +1,33 @@
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def max_depth(root):
+    if not root:
+        return 0
+    
+    q = deque([root])
+    depth = 0
+
+    while q:
+        depth += 1
+        for _ in range(len(q)):
+            node = q.popleft()
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+    return depth
+
+root = TreeNode(
+    4,
+    TreeNode(2, TreeNode(1), TreeNode(3)),
+    TreeNode(7)
+)
+
+depth = max_depth(root)
+print(f"depth of the root: {depth}")
