@@ -1,0 +1,34 @@
+https://leetcode.com/problems/maximum-difference-between-increasing-elements/
+
+class Solution:
+    def maximumDifference(self, nums: List[int]) -> int:
+        n = len(nums)
+        max_diff = -1
+        min_val = nums[0]
+
+        for num in nums:
+            if num > min_val:
+                max_diff = max(max_diff, num - min_val)
+            else:
+                min_val = num
+
+        return max_diff
+class Solution:
+    def maximumDifference(self, nums: List[int]) -> int:
+        n = len(nums)
+        max_diff = -1
+        min_val = nums[0]
+        for i in range(1,n):
+            if nums[i] > min_val:
+                max_diff = max(max_diff, nums[i] - min_val)
+            min_val = min(min_val, nums[i])
+
+        return max_diff
+
+        
+
+    
+
+
+
+        
