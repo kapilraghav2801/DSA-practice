@@ -1,0 +1,23 @@
+def two_sum_less_K(nums, K):
+    nums.sort() #
+    n = len(nums)
+    
+    left = 0
+    right = n - 1
+    answer = -1
+    while left < right:
+        current_sum = nums[left] + nums[right]
+        
+        if current_sum < K:
+            answer = max(answer, current_sum)
+            
+            left += 1 
+        else:
+            right -= 1
+            
+    return answer
+    
+    
+nums = [34,23,1,24,75,33,54,8] #58
+K = 60
+print(two_sum_less_K(nums, K))
