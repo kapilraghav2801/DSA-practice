@@ -1,22 +1,19 @@
-from collections import Counter
 import heapq
+from collections import Counter
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        min_heap = []
+        
+        freq = Counter(nums)
 
-def freq_sort(arr):
-    freq_map = Counter(arr)
-    max_heap = []
+        for num, count in freq.items():
+            heapq.heappush(min_heap,(count,-num))
 
-    for num,count in freq_map.items():
-        heapq.heappush(max_heap,(-count,num))
-    result = []
+        result = []
 
-    while max_heap:
-        count,num = heapq.heappop(max_heap)
-        result.extend(-count * [num])
+        while min_heap:
+            count, num = heapq.heappop(min_heap)
+            result.extend(count * [-num])
 
-    return result
-
-arr = [1,1,1,3,2,2,4]  #op = [1,1,1,2,2,3,4]
-
-print(freq_sort(arr))
-
-
+        return result
+        
