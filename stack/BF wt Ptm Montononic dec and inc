@@ -1,0 +1,87 @@
+# def nsl(arr):
+#     n = len(arr)
+#     result = []
+#     stack = []
+#     for i in range(n):
+#         while stack and stack[-1] >= arr[i]:
+#             stack.pop()
+#         result.append(stack[-1] if stack else -1)
+#         stack.append(arr[i])
+#     return result
+# arr = [1,3,2,4]
+# print(nsl(arr))
+
+#     # return result
+#     # for i in range(n):
+#     #     found = False
+#     #     for j in range(i-1, -1, -1):
+#     #         if arr[j] < arr[i]:
+#     #             result.append(arr[j])
+#     #             found = True
+#     #             break
+#     #     if not found:
+#     #         result.append(-1)
+#     for i in range(n):
+#         for j in range(i - 1, -1, -1):
+#             if arr[j] < arr[i]:
+#                 result.append(arr[j])
+#                 break
+#         else:
+#             # this runs ONLY if loop was NOT broken
+#             result.append(-1)
+
+#     return result 
+# arr = [1,3,2,4]
+# print(nsl(arr))
+
+
+# def nsr(arr):
+#     n = len(arr)
+#     result = [-1] * n
+#     stack = []
+
+#     # for i in range(n):
+#     #     found = False
+#     #     for j in range(i+1,n):
+#     #         if arr[j] < arr[i]:
+#     #             result.append(arr[j])
+#     #             found = True
+#     #             break
+#     #     if not found:
+#     #         result.append(-1)
+
+#     # return result
+#     for i in range(n-1, -1, -1):
+#         while stack and stack[-1] >= arr[i]:
+#             stack.pop()
+#         result[i] = stack[-1] if stack else -1
+#         stack.append(arr[i])
+#     return result
+
+# arr = [1,3,2,4]
+# print(nsr(arr))
+
+
+def NGL(arr):
+    n = len(arr)
+    result = [-1] * n
+    stack = []
+    for i in range(n):
+        while stack and stack[-1] <= arr[i]:
+            stack.pop()
+        result[i] = stack[-1] if stack else -1
+        stack.append(arr[i])
+
+    return result
+    # for i in range(n):
+    #     for j in range(i-1,-1,-1):
+    #         if arr[i] <= arr[j]:
+    #             result.append(arr[j])
+    #             break
+    #     else:
+    #         result.append(-1)
+
+    # return result
+
+arr = [4,2,5,1,3] #[-1,4,-1,5,5]
+print(NGL(arr))
