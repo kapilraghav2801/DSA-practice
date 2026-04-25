@@ -1,0 +1,47 @@
+def subset_sum_memo(arr, target):
+    n = len(arr)
+    memo = {}
+
+    def dp(i,s):
+        if s == 0:
+            return True
+        if i == 0:
+            return False
+        
+        if (i,s) in memo:
+            return memo[(i,s)]
+
+        num = arr[i-1]
+
+        skip = dp(i-1, s)
+
+        take = False
+        if num <= s:
+            take = dp(i-1, s-num)
+
+        result = skip or take
+        memo[(i,s)] = result
+
+        return result
+    #return dp(n, target)
+    found = dp(n, target)
+    
+
+    subset = []
+    i, s = n, target
+
+    while i > 0 and s > 0:
+        skip_val = memo.get((i-1, s), s== 0)
+        if not skip_val:
+            subset.append(arr[i-1])
+            s -= arr[i-1]
+
+        i -= 1
+
+    return found, subset
+
+        
+arr = [2,3,5,7,8] 
+target = 11
+
+print(subset_sum_memo(arr, target))
